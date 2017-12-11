@@ -10,8 +10,8 @@ build: prepare
 	docker build -t $(DOCKER_IMAGE) .
 
 prepare:
-	mkdie -p $(PWD)/docker_root/usr/local/bin/
-	cp -v $(SRC_DIR)/lib/linux.vault $(PWD)/docker_root/usr/local/bin/
+	mkdir -p $(PWD)/docker_root/usr/local/bin/
+	cp -v $(SRC_DIR)/lib/linux.vault $(PWD)/docker_root/usr/local/bin/vault
 	cp -v $(SRC_DIR)/cliks $(PWD)/docker_root/usr/local/bin/
 	chmod a+x $(PWD)/docker_root/usr/local/bin/*
 
@@ -26,7 +26,4 @@ download:
 	rm -Rf $(VAULT_DIR)
 
 term:
-	docker run -ti  --rm --entrypoint=bash $(DOCKER_IMAGE)
-
-test:
-	cd $(SRC_DIR) && npm start
+	docker run -ti  -e VAULT_TOKEN=token123 -e VAULT_ADDR=http://vaultserver:8200 --rm --entrypoint=bash $(DOCKER_IMAGE)

@@ -2,29 +2,30 @@
 
 
 login(){
-  vault auth ${VAULT_ADRESS} ${VAULT_TOKEN}
+  vault auth ${VAULT_ADDR} ${VAULT_TOKEN}
 }
 
 getkey(){
-  vault read ${VAULT_ADRESS} secret/$1
+  vault read -address=${VAULT_ADDR} -field=value secret/$1
 }
 
 setkey(){
-  vault write ${VAULT_ADRESS} secret/$1 $2
+  vault write -address=${VAULT_ADDR} "secret/$1" value="$2"
 }
 
 
 #
 #
 #
-login
 
-CMD=$1
+cmd=$(echo $1 | tr /a-z/ /A-Z/)
 KEY=$2
 VALUE="$3"
 
-if [ "$cmd" = "GET" ]; then
+if [ "$cmd" = "LOGIN" ]; then
+  login
+elif [ "$cmd" = "GET" ]; then
   getkey $KEY
 elif [ "$cmd" = "SET" ]; then
-  getkey $KEY "$VALUE"
+  setkey $KEY "$VALUE"
 fi
