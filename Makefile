@@ -1,29 +1,42 @@
+######
 PWD=$(shell pwd)
+#
 SRC_DIR=$(PWD)/src
-VAULT_DIR=$(PWD)/src/vault
+DOWNLOAD_DIR=$(SRC_DIR)/download
+DOCKER_DIR=$(PWD)/docker_root
+#
 DOCKER_IMAGE:=dockermgeo/vaultclient
-VAULT_VERSION=0.9.0
-VAULT_ZIP_FILE:=vault_$(VAULT_VERSION)_linux_amd64.zip
+######
+
 
 build: prepare
 	cd $(PWD)
 	docker build -t $(DOCKER_IMAGE) .
 
-prepare:
-	mkdir -p $(PWD)/docker_root/usr/local/bin/
-	cp -v $(SRC_DIR)/lib/linux.vault $(PWD)/docker_root/usr/local/bin/vault
-	cp -v $(SRC_DIR)/cliks $(PWD)/docker_root/usr/local/bin/
-	chmod a+x $(PWD)/docker_root/usr/local/bin/*
+prepare: download.vault download.redis
+	mkdir -p $(DOCKER_DIR)/usr/local/bin
+	mkdir -p $(DOCKER_DIR)/usr/share
+	cp -v $(DOWNLOAD_DIR)/vault $(DOCKER_DIR)/usr/local/bin/
+	cp -v $(DOWNLOAD_DIR)/clireds $(DOCKER_DIR)/usr/local/bin/
+	cp -Rv $(SRC_DIR)/cliks $(PWD)/docker_root/usr/share/
+	cp -v $(DOCKER_DIR)/usr/share/cliks/cliks $(DOCKER_DIR)/usr/local/bin/
+	chmod a+x $(DOCKER_DIR)/usr/local/bin/*
 
-download:
-	mkdir -p $(VAULT_DIR)
-	cd $(VAULT_DIR)
-	curl -O https://releases.hashicorp.com/vault/$(VAULT_VERSION)/$(VAULT_ZIP_FILE)
-	unzip $(VAULT_ZIP_FILE)
-	rm -f $(VAULT_ZIP_FILE)
-	mv vault $(SRC_DIR)/lib/linux.vault
-	cd $(PWD)
-	rm -Rf $(VAULT_DIR)
+download.vault:
+	cd /tmp
+	mkdir -p $(SRC_DIR)/usr/local/bin
+	curl -O https://github.com/dockermgeo/libshare/blob/master/keystore_clients/clivaults/vault-Linux
+	mv vault-Linux $(DOWNLOAD_DIR)/vault
+	chmod a+x $(DOWNLOAD_DIR)/vault
+
+
+download.clireds:
+		cd /tmp
+		mkdir -p $(SRC_DIR)/usr/local/bin
+		curl -O https://github.com/dockermgeo/libshare/blob/master/keystore_clients/clireds/clireds-Linux
+		mv clireds-Linux $(DOWNLOAD_DIR)/clireds
+		chmod a+x $(DOWNLOAD_DIR)/clireds
+
 
 term:
 	docker run -ti  -e VAULT_TOKEN=token123 -e VAULT_ADDR=http://vaultserver:8200 --rm --entrypoint=bash $(DOCKER_IMAGE)

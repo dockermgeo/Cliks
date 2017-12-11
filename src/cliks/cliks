@@ -1,0 +1,17 @@
+#!/usr/bin/env sh
+
+# params
+_CMD_=$(echo $1 | tr /a-z/ /A-Z/)
+_KEY_=$2
+_VALUE_="$3"
+
+if [ -z ${VAULT_ADDR} ]; then
+  echo "Setting REDIS"
+  . /usr/share/cliks/lib/cli_redis
+else
+  echo "Setting VAULT"
+  . /usr/share/cliks/lib/cli_vault
+fi
+
+# run,execute
+$(_CMD_) ${_KEY_} ${_VALUE_}

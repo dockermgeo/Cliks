@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# ENV REDIS_PASSWORD, REDIS_HOST, REIDS_PORT:6379,LOG_LEVEL
+
+# params
+_CMD_=$(echo $1 | tr /a-z/ /A-Z/)
+_KEY_=$2
+_VALUE_="$3"
+
+# functions
+getkey(){
+  clireds redishost hget "$1"
+}
+
+setkey(){
+  clireds redishost hset "$1"
+}
+
+# run,execute
+if [ "$_CMD_" = "GET" ]; then
+  getkey $_KEY_
+elif [ "$_CMD_" = "SET" ]; then
+  setkey $_KEY_ "$_VALUE_"
+fi
