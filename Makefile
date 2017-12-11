@@ -37,18 +37,17 @@ prepare: download.vault download.clireds
 	chmod a+x $(DOCKER_DIR)/usr/local/bin/*
 
 download.vault:
-	cd /tmp
-	mkdir -p $(SRC_DIR)/usr/local/bin
+	mkdir -p $(DOWNLOAD_DIR)
 	#curl -O https://github.com/dockermgeo/libshare/blob/master/keystore_clients/clivaults/vault-Linux
 	curl -O https://releases.hashicorp.com/vault/0.9.0/vault_0.9.0_linux_amd64.zip
 	unzip vault_0.9.0_linux_amd64.zip
+	rm unzip vault_0.9.0_linux_amd64.zip
 	mv vault $(DOWNLOAD_DIR)/vault
 	chmod a+x $(DOWNLOAD_DIR)/vault
 
 
 download.clireds:
 		cd /tmp
-		mkdir -p $(SRC_DIR)/usr/local/bin
 		curl -O https://github.com/dockermgeo/libshare/blob/master/keystore_clients/clireds/clireds-Linux
 		mv clireds-Linux $(DOWNLOAD_DIR)/clireds
 		chmod a+x $(DOWNLOAD_DIR)/clireds
