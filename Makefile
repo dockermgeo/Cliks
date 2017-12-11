@@ -21,10 +21,12 @@ install.linux: download.vault download.clireds
 	chmod a+x /usr/local/bin/*
 
 docker.build: prepare
+	@echo "Docker build"
 	cd $(PWD)
 	docker build -t $(DOCKER_IMAGE) .
 
 prepare: download.vault download.clireds
+	@echo "Prepare Build"
 	mkdir -p $(DOCKER_DIR)/usr/local/bin
 	mkdir -p $(DOCKER_DIR)/usr/share
 	cp -v $(DOWNLOAD_DIR)/vault $(DOCKER_DIR)/usr/local/bin/
