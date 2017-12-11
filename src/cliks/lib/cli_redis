@@ -23,7 +23,7 @@ if [ ! -z ${REDIS_ADDR} ]; then
 
   _REDIS_HOST=$(echo ${_REDIS_HTTP} | cut -d '/' -f2)
   if [ "${_REDIS_HOST}" != "" ]; then
-    export REDIS_PORT=${_REDIS_HOST}
+    export REDIS_HOST=${_REDIS_HOST}
   fi
 
   _REDIS_PORT=$(echo ${REDIS_ADDR} | cut -d ':' -f3)
