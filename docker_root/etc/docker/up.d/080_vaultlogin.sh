@@ -6,12 +6,12 @@ if [ -z ${VAULT_TOKEN} ]; then
   exit 1;
 fi
 
-if [ -z ${VAULT_ADDRESS} ]; then
+if [ -z ${VAULT_ADDR} ]; then
   warn "Missing VAULT_ADDRESS - using DNS 'vaultserver:8200'"
   export VAULT_ADDRESS='vaultserver:8200'
 fi
-VAULT_HOST=$(echo $VAULT_ADDRESS | cut -d':' -f1)
-VAULT_PORT=$(echo $VAULT_ADDRESS | cut -d':' -f2)
+VAULT_HOST=$(echo $VAULT_ADDR | cut -d':' -f1)
+VAULT_PORT=$(echo $VAULT_ADDR | cut -d':' -f2)
 
 echo "host: ${VAULT_HOST}
 port: ${VAULT_PORT}

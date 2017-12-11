@@ -1,6 +1,5 @@
 ######
 PWD=$(shell pwd)
-#
 SRC_DIR=$(PWD)/src
 DOWNLOAD_DIR=$(SRC_DIR)/download
 DOCKER_DIR=$(PWD)/docker_root
