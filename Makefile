@@ -7,7 +7,10 @@ DOCKER_DIR=$(PWD)/docker_root
 DOCKER_IMAGE:=dockermgeo/vaultclient
 ######
 
+install: install.linux
+
 install.linux: download.vault download.clireds
+	@echo "Building on LINUX!!!"
 	mkdir -p /usr/local/bin
 	mkdir -p /usr/share
 	cp -v $(DOWNLOAD_DIR)/vault /usr/local/bin/
