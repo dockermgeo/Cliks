@@ -7,13 +7,15 @@
 
 ### Docker
 ```
-git clone https://github.com/dockermgeo/Cliks && \
-make install
+RUN cd /tmp && \
+    git clone https://github.com/dockermgeo/Cliks && \
+    cd /tmp/Cliks && \
+    make install && \
+    rm -Rf /tmp/Cliks
 ```
 ### Jenkins
 ```
-git clone https://github.com/dockermgeo/Cliks && \
-make docker.build
+git clone https://github.com/dockermgeo/Cliks && make docker.build
 ```
 
 
