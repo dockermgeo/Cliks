@@ -16,12 +16,31 @@ git clone https://github.com/dockermgeo/Cliks && \
 make docker.build
 ```
 
+
+## Configure Redis or Vault
+If Environmentvariable **VAULT_ADDR** is set, **cliks** will us vault as keystoreengine.
+
+
+### Environmentvariables
+
+#### Vault
+- VAULT_ADDR
+- VAULT_TOKEN
+
+#### Redis
+- REDIS_PASSWORD
+- REDIS_HOST
+- REDIS_PORT
+
+
+## Using
+
 ### Get a Value from keystore
 cliks get 'KEYNAME'
 
-
 ### Setting a Value in keystore
 cliks set 'KEYNAME' 'VALUE'
+
 
 #### Example
 ```
