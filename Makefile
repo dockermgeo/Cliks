@@ -47,7 +47,6 @@ download.vault:
 
 
 download.clireds:
-		cd /tmp
 		curl -O https://github.com/dockermgeo/libshare/blob/master/keystore_clients/clireds/clireds-Linux
 		mv clireds-Linux $(DOWNLOAD_DIR)/clireds
 		chmod a+x $(DOWNLOAD_DIR)/clireds
