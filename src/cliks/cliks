@@ -6,12 +6,10 @@ _KEY_=$2
 _VALUE_="$3"
 
 if [ -z ${VAULT_ADDR} ]; then
-  echo "Setting REDIS"
-  . /usr/share/cliks/lib/cli_redis
+  mybin=/usr/share/cliks/lib/cli_redis
 else
-  echo "Setting VAULT"
-  . /usr/share/cliks/lib/cli_vault
+  mybin=/usr/share/cliks/lib/cli_vault
 fi
 
 # run,execute
-echo ${_CMD_} ${_KEY_} ${_VALUE_}
+${mybin} ${_CMD_} ${_KEY_} ${_VALUE_}

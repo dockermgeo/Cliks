@@ -17,7 +17,8 @@ prepare: download.vault download.clireds
 	mkdir -p $(DOCKER_DIR)/usr/share
 	cp -v $(DOWNLOAD_DIR)/vault $(DOCKER_DIR)/usr/local/bin/
 	cp -v $(DOWNLOAD_DIR)/clireds $(DOCKER_DIR)/usr/local/bin/
-	cp -Rv $(SRC_DIR)/cliks $(PWD)/docker_root/usr/share/
+	cp -Rv $(SRC_DIR)/cliks $(DOCKER_DIR)/usr/share/
+	chmod -Rv a+x $(DOCKER_DIR)/usr/share/cliks/*
 	cp -v $(DOCKER_DIR)/usr/share/cliks/cliks $(DOCKER_DIR)/usr/local/bin/
 	chmod a+x $(DOCKER_DIR)/usr/local/bin/*
 

@@ -15,7 +15,8 @@ getkey(){
 }
 
 setkey(){
-  vault write -address=${VAULT_ADDR} "secret/$1" value="$2"
+  vault write -address=${VAULT_ADDR} "secret/$1" value="$2" >>/dev/null
+  echo "Secret $1 stored!"
 }
 
 # run,execute
