@@ -41,7 +41,7 @@ download.vault:
 	#curl -O https://github.com/dockermgeo/libshare/blob/master/keystore_clients/clivaults/vault-Linux
 	curl -O https://releases.hashicorp.com/vault/0.9.0/vault_0.9.0_linux_amd64.zip
 	unzip vault_0.9.0_linux_amd64.zip
-	rm unzip vault_0.9.0_linux_amd64.zip
+	rm vault_0.9.0_linux_amd64.zip
 	mv vault $(DOWNLOAD_DIR)/vault
 	chmod a+x $(DOWNLOAD_DIR)/vault
 
