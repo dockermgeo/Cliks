@@ -29,8 +29,7 @@ If Environmentvariable **VAULT_ADDR** is set, **cliks** will us vault as keystor
 
 #### Redis
 - REDIS_ADDR
-- REDIS_HOST
-- REDIS_PORT
+- REDIS_PASSWORD
 
 
 ## Using
