@@ -2,8 +2,6 @@
 
 # params
 _CMD_=$(echo $1 | tr /a-z/ /A-Z/)
-_KEY_=$2
-_VALUE_="$3"
 
 if [ "$_CMD_" = "help" ]; then
   echo "ENV-VAULT:"
@@ -16,10 +14,19 @@ if [ "$_CMD_" = "help" ]; then
 fi
 
 if [ -z ${VAULT_ADDR} ]; then
+  # Redis
+  _DOMAIN_="$2"
+  _KEY_="$3"
+  _VALUE_="$4"
   mybin=/usr/share/cliks/lib/cli_redis
-else
-  mybin=/usr/share/cliks/lib/cli_vault
-fi
+  # run,execute
+  ${mybin} ${_CMD_} ${_KEY_} ${_DOMAIN_} ${_VALUE_}
 
-# run,execute
-${mybin} ${_CMD_} ${_KEY_} ${_VALUE_}
+else
+  # Vault
+  _KEY_="$2"
+  _VALUE_="$3"
+  mybin=/usr/share/cliks/lib/cli_vault
+  # run,execute
+  ${mybin} ${_CMD_} ${_KEY_} ${_VALUE_}
+fi
