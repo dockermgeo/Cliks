@@ -7,8 +7,17 @@ DOCKER_DIR=$(PWD)/docker_root
 DOCKER_IMAGE:=dockermgeo/vaultclient
 ######
 
+install.linux: download.vault download.clireds
+	mkdir -p /usr/local/bin
+	mkdir -p /usr/share
+	cp -v $(DOWNLOAD_DIR)/vault /usr/local/bin/
+	cp -v $(DOWNLOAD_DIR)/clireds /usr/local/bin/
+	cp -Rv $(SRC_DIR)/cliks /usr/share/
+	chmod -Rv a+x /usr/share/cliks/*
+	ln -s /usr/share/cliks/cliks /usr/local/bin/
+	chmod a+x /usr/local/bin/*
 
-build: prepare
+docker.build: prepare
 	cd $(PWD)
 	docker build -t $(DOCKER_IMAGE) .
 
