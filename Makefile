@@ -12,7 +12,7 @@ build: prepare
 	cd $(PWD)
 	docker build -t $(DOCKER_IMAGE) .
 
-prepare: download.vault download.redis
+prepare: download.vault download.clireds
 	mkdir -p $(DOCKER_DIR)/usr/local/bin
 	mkdir -p $(DOCKER_DIR)/usr/share
 	cp -v $(DOWNLOAD_DIR)/vault $(DOCKER_DIR)/usr/local/bin/
@@ -24,8 +24,10 @@ prepare: download.vault download.redis
 download.vault:
 	cd /tmp
 	mkdir -p $(SRC_DIR)/usr/local/bin
-	curl -O https://github.com/dockermgeo/libshare/blob/master/keystore_clients/clivaults/vault-Linux
-	mv vault-Linux $(DOWNLOAD_DIR)/vault
+	#curl -O https://github.com/dockermgeo/libshare/blob/master/keystore_clients/clivaults/vault-Linux
+	curl -O https://releases.hashicorp.com/vault/0.9.0/vault_0.9.0_linux_amd64.zip
+	unzip vault_0.9.0_linux_amd64.zip
+	mv vault $(DOWNLOAD_DIR)/vault
 	chmod a+x $(DOWNLOAD_DIR)/vault
 
 

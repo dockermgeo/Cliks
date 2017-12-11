@@ -14,4 +14,4 @@ else
 fi
 
 # run,execute
-$(_CMD_) ${_KEY_} ${_VALUE_}
+echo ${_CMD_} ${_KEY_} ${_VALUE_}
