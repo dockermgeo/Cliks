@@ -5,17 +5,13 @@
 
 ## Install
 
-### Docker
+### Linux & Docker
 ```
 RUN cd /tmp && \
     git clone https://github.com/dockermgeo/Cliks && \
     cd /tmp/Cliks && \
     make install && \
     rm -Rf /tmp/Cliks
-```
-### Jenkins
-```
-git clone https://github.com/dockermgeo/Cliks && make docker.build
 ```
 
 
