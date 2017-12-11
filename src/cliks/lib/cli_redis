@@ -16,6 +16,11 @@ setkey(){
   clireds redishost hset "$1"
 }
 
+if [ ! -z ${REDIS_ADDR} ]; then
+  export REDIS_HOST=$(echo ${REDIS_ADDR} | cut -d '/' -f2)
+  export REDIS_PORT=$(echo ${REDIS_ADDR} | cut -d ':' -f2)
+fi
+
 # run,execute
 if [ "$_CMD_" = "GET" ]; then
   getkey $_KEY_
