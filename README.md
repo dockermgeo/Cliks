@@ -14,11 +14,11 @@ git clone https://github.com/dockermgeo/Cliks && \
 make docker.build
 ```
 
-### Get Value from keystore
+### Get a Value from keystore
 cliks get 'KEYNAME'
 
 
-### Get Value from keystore
+### Setting a Value in keystore
 cliks set 'KEYNAME' 'VALUE'
 
 #### Example
