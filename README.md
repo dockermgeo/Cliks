@@ -1,5 +1,7 @@
 # Cliks
-***Cliks*** is a clienttools for handling keystore as vault or redis.
+***Cliks*** is a client for handling keystores as vault or redis.
+
+
 
 ## Install
 
