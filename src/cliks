@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+
+login(){
+  vault auth ${VAULT_ADRESS} ${VAULT_TOKEN}
+}
+
+getkey(){
+  vault read ${VAULT_ADRESS} secret/$1
+}
+
+setkey(){
+  vault write ${VAULT_ADRESS} secret/$1 $2
+}
+
+
+#
+#
+#
+login
+
+CMD=$1
+KEY=$2
+VALUE="$3"
+
+if [ "$cmd" = "GET" ]; then
+  getkey $KEY
+elif [ "$cmd" = "SET" ]; then
+  getkey $KEY "$VALUE"
+fi
